@@ -1,38 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+https://docs.solana.com/cluster/rpc-endpoints
 
-## Getting Started
+https://github.com/arddluma/awesome-list-rpc-nodes-providers#solana
 
-First, run the development server:
+https://stackoverflow.com/questions/70028880/i-would-like-to-get-all-transactions-given-an-address
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+https://www.youtube.com/watch?v=pN-bx6NfDmg&ab_channel=QuickNode
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://docs.solanapay.com/core/transfer-request/merchant-integration
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+https://www.pointer.gg/tutorials/solana-pay-irl-payments/20d91ef3-542c-4d51-9f68-ed483928696e
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+# Todos
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### In progress
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [] Add valid wallet validation before submit
 
-## Learn More
+- [x] Add costs and memo in checkout
+- [x] Add customizable payment
+- [x] Move api key to .env file
+- [] Understand if I reuse the established connection of solana instead of using the solanaWeb3 object
+- [x] Create loop so user can pay for another calculation
+- [x] Detect the payment
+- [x] Refactor the index page with components
+- [x] Create mvp UI
+  - [x] Form for inputting address
+  - [x] Radio buttons for selecting # of transactions
+  - [x] Results display
+- [x] Create and add logic for calculating gas fees
+- [x] Find ways to add a pay wall
 
-To learn more about Next.js, take a look at the following resources:
+  - [x] Look into Solana pay or create a smart contract
+    - Seems like Solana pay serves my purpose
+    - If I ever need to create a subscription model I can just use a DB to store the addresses rather than creating a smart contract to store on chain.
+      The latter seems to require more research and experimentation.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Make the payment conditional based on the amount of transactions user wants to calculate gas fees for. Make the payment a modal
