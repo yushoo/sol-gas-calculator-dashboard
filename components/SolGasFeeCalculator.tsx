@@ -175,7 +175,7 @@ const SolGasFeeCalculator = ({
       <Flex
         flexDirection='column'
         border='1px'
-        borderColor='white'
+        borderColor='black'
         borderRadius='5px'
         padding='1rem 1rem'
         margin={[2, 3]}
