@@ -40,9 +40,6 @@ const SolGasFeeCalculator = ({
   const [gasFees, setGasFees] = useState<number | null>(null);
   const [solanaPrice, setSolanaPrice] = useState<number | null>(null);
   const toast = useToast();
-
-  // const gasFeesInUsd = (gasFees ?? null) * (solanaPrice ?? null) ?? null;
-
   const [isGetTransLoading, setIsGetTransLoading] = useState(false);
   const [hasSubmit, setHasSubmit] = useState<boolean>(false);
   const [isValidAddress, setIsValidAddress] = useState<boolean>(false);
