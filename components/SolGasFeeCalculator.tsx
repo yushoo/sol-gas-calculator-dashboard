@@ -11,6 +11,7 @@ import {
   Stack,
   Radio,
   Spinner,
+  useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState, useRef } from 'react';
 import * as solanaWeb3 from '@solana/web3.js';
@@ -38,10 +39,26 @@ const SolGasFeeCalculator = ({
   const [transactions, setTransactions] = useState<object[] | null>(null);
   const [gasFees, setGasFees] = useState<number | null>(null);
   const [solanaPrice, setSolanaPrice] = useState<number | null>(null);
+  const toast = useToast();
+
   // const gasFeesInUsd = (gasFees ?? null) * (solanaPrice ?? null) ?? null;
 
   const [isGetTransLoading, setIsGetTransLoading] = useState(false);
   const [hasSubmit, setHasSubmit] = useState<boolean>(false);
+  const [isValidAddress, setIsValidAddress] = useState<boolean>(false);
+
+  const checkIsValidAddress = async () => {
+    try {
+      const publicKey = new solanaWeb3.PublicKey(`${address}`);
+      setIsValidAddress(true);
+      console.log('publicKey: ', publicKey);
+      return true;
+    } catch (error) {
+      setIsValidAddress(false);
+      return false;
+    }
+  };
+
   // event handlers
   const handleAddressInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleSetAddress(event.target.value);
@@ -53,6 +70,25 @@ const SolGasFeeCalculator = ({
     const newLimit = Number(event.target.value);
     handleSetTransactionLimit(newLimit);
     console.log(newLimit);
+  };
+  // handle pay & submit
+  function showErrorToast() {
+    toast({
+      title: 'Error: Invalid address',
+      description: 'Please input a valid public key',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
+  const handlePayAndSubmit = async () => {
+    if (await checkIsValidAddress()) {
+      onOpen();
+    } else {
+      console.log('INVALID PUB ADDRESS');
+      showErrorToast();
+    }
   };
 
   // Queries
@@ -164,7 +200,7 @@ const SolGasFeeCalculator = ({
         colorScheme='teal'
         margin={[2, 3]}
         onClick={
-          onOpen
+          handlePayAndSubmit
           // await getTransactions();
           // setHasSubmit(true);
         }
