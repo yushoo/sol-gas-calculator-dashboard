@@ -18,8 +18,8 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: '#050D38',
-        color: 'white',
+        bg: '#D0C8C8',
+        color: 'black',
       },
     },
   },
